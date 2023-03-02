@@ -15,6 +15,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 public class Window {
 
     private long window;
+    private MouseInput mouseInput;
     private boolean open=  true;
     private int width, height;
     private String title;
@@ -98,6 +99,8 @@ public class Window {
         // Make the window visible
         glfwShowWindow(window);
 
+        mouseInput = new MouseInput(window);
+
     }
 
     public void update(){
@@ -111,6 +114,7 @@ public class Window {
         if(glfwWindowShouldClose(window))
             open = false;
 
+        mouseInput.input();
     }
 
     public void cleanup(){
@@ -123,5 +127,7 @@ public class Window {
         return glfwGetKey(window, keyCode) == GLFW_PRESS;
     }
 
-
+    public MouseInput getMouseInput() {
+        return mouseInput;
+    }
 }
