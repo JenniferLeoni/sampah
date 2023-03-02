@@ -23,9 +23,18 @@ public class Object2d extends ShaderProgram{
 
     int vboColor;
     List<Vector3f> verticesColor;
+
+    public List<Vector3f> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(List<Vector3f> vertices) {
+        this.vertices = vertices;
+    }
+
     public Object2d(List<ShaderModuleData> shaderModuleDataList
             , List<Vector3f> vertices
-            ,Vector4f color) {
+            , Vector4f color) {
         super(shaderModuleDataList);
         this.vertices = vertices;
         this.color = color;
@@ -114,6 +123,7 @@ public class Object2d extends ShaderProgram{
                 0,
                 vertices.size());
     }
+
     public void addVertices(Vector3f newVector){
         vertices.add(newVector);
         setupVAOVBO();
@@ -125,12 +135,6 @@ public class Object2d extends ShaderProgram{
         glLineWidth(10); //ketebalan garis
         glPointSize(10); //besar kecil vertex
         //wajib
-        //GL_LINES
-        //GL_LINE_STRIP
-        //GL_LINE_LOOP
-        //GL_TRIANGLES
-        //GL_TRIANGLE_FAN
-        //GL_POINT
         glDrawArrays(GL_TRIANGLES,
                 0,
                 vertices.size());
@@ -151,5 +155,12 @@ public class Object2d extends ShaderProgram{
         glDrawArrays(GL_TRIANGLES,
                 0,
                 vertices.size());
+    }
+
+    public void setCenter(float x, float y) {
+
+    }
+    public void createRectangle() {
+
     }
 }

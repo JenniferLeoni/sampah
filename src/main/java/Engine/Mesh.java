@@ -7,22 +7,13 @@ import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class RectangleWithCircleFormula extends Object2d {
+public class Mesh extends Object2d {
 
     float x, y;
     Vector3f centerpoint;
     Vector3f radius;
 
-    @Override
-    public void setCenter(float x, float y){
-        centerpoint.x = x;
-        centerpoint.y = y;
-    }
-    public Vector3f getCenterpoint() {
-        return centerpoint;
-    }
-
-    public RectangleWithCircleFormula(List<ShaderModuleData> shaderModuleDataList
+    public Mesh(List<ShaderModuleData> shaderModuleDataList
             , List<Vector3f> vertices, Vector3f centerpoint, Vector3f radius, Vector4f color) {
         super(shaderModuleDataList, vertices, color);
         this.centerpoint = centerpoint;
@@ -31,7 +22,6 @@ public class RectangleWithCircleFormula extends Object2d {
         setupVAOVBO();
     }
 
-    @Override
     public void createRectangle() {
         vertices.clear();
         for (double i = 45; i < 360; i += 90) {
@@ -49,5 +39,12 @@ public class RectangleWithCircleFormula extends Object2d {
                 0,
                 vertices.size());
     }
+    public void addVertices(Vector3f newVector){
+        vertices.add(newVector);
+        setupVAOVBO();
+    }
 
+    public Vector3f getCenterpoint() {
+        return centerpoint;
+    }
 }

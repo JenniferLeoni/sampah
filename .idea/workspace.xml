@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="326d8308-6605-479d-81ac-0c3b8777282c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/shaders/sceneWithVerticesColor.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/shaders/sceneWithVerticesColor.vert" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/MouseInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/Rectangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/RectangleWithCircleFormula.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/StarWithCircleFormulaIG.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/TriangleWithCircleFormula.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Engine/Mesh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shaders/scene.frag" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shaders/scene.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shaders/scene.vert" beforeDir="false" afterPath="$PROJECT_DIR$/resources/shaders/scene.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Engine/Object2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine/Object2d.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Engine/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Engine/RectangleWithCircleFormula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Engine/RectangleWithCircleFormula.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,15 +44,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "last_opened_file_path": "D:/KULIAH/semester 4/grafkom/kerja/src/main/java/Engine",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/KULIAH/semester 4/grafkom/kerja/src/main/java/Engine&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\KULIAH\semester 4\grafkom\kerja\src\main\java\Engine" />
@@ -97,6 +88,18 @@
       <option name="presentableId" value="Default" />
       <updated>1676335900829</updated>
     </task>
+    <task id="LOCAL-00001" summary="yess">
+      <created>1677761389382</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677761389382</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="yess" />
+    <option name="LAST_COMMIT_MESSAGE" value="yess" />
   </component>
 </project>
