@@ -23,7 +23,7 @@ public class Main {
             = new ArrayList<>();
     private ArrayList<Object2d> liness
             = new ArrayList<>();
-//    private ArrayList<Vector3f> points = new ArrayList<>();
+    private ArrayList<Vector3f> points = new ArrayList<>();
     private ArrayList<Object2d> objectsSquare = new ArrayList<>();
     public void init(){
         window.init();
@@ -56,7 +56,7 @@ public class Main {
             pos.x = (pos.x - (window.getWidth()/2.0f)) / (window.getWidth()/2.0f);
             pos.y = (pos.y - (window.getHeight()/2.0f)) / (-window.getHeight()/2.0f);
             if((!(pos.x > 1 || pos.x < -0.97) && !(pos.y > 0.97 || pos.y < -1))){
-                List<Vector3f> points = liness.get(0).getVertices();
+                points = (ArrayList<Vector3f>) liness.get(0).getVertices();
                 boolean find = true;
                 int index = 0;
                 for(Vector3f point: points){
@@ -74,6 +74,8 @@ public class Main {
                     temp.set(index, new Vector3f(pos.x, pos.y, 0));
                     liness.get(0).setVertices(temp);
                     liness.get(0).setupVAOVBO();
+
+                    liness.get(0).updateCurve(points);
 
                     return;
                 }
@@ -93,6 +95,7 @@ public class Main {
                         new Vector3f(0.05f, 0.05f, 0),
                         new Vector4f(1.0f,0.0f,0.0f,0.0f)
                 ));
+                liness.get(0).updateCurve(points);
             }
         }
 
@@ -108,15 +111,11 @@ public class Main {
             input();
 
             //code
-            for(Object2d object: liness){
-                object.drawLine();
-            }
-            for(Object2d object: objects){
-                object.drawWithVerticesColor();
-            }
+            liness.get(0).drawCurve(points);
             for(Object2d object: objectsSquare){
                 object.draw();
             }
+
 
 
 

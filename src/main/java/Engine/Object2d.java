@@ -4,18 +4,22 @@ package Engine;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Object2d extends ShaderProgram{
 
     List<Vector3f> vertices;
+    private ArrayList<Vector3f> curveVertices
+            = new ArrayList<>();
     int vao;
     int vbo;
     UniformsMap uniformsMap;
@@ -163,4 +167,101 @@ public class Object2d extends ShaderProgram{
     public void createRectangle() {
 
     }
+    public void setupVAOVBOCurve(){
+        // set vao
+        vao = glGenVertexArrays();
+        glBindVertexArray(vao);
+        // set vbo
+        vbo = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        // mengirim vertices
+        glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat(curveVertices), GL_STATIC_DRAW);
+    }
+    public void drawCurve(List<Vector3f> points){
+        Object2d line = new Object2d(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert"
+                                        , GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag"
+                                        , GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(points),
+                new Vector4f(0.0f,0.0f,0.0f,0.0f)
+        );
+        line.drawLine();
+        if(vertices.size()<3) {
+            if(vertices.size()==2){
+                for (Vector3f vertice: vertices){
+                    curveVertices.add(vertice);
+                }
+            }
+            return;
+        }
+        setupVAOVBOCurve();
+        drawSetup();
+        glLineWidth(10);
+        glPointSize(10);
+        glDrawArrays(GL_LINE_STRIP, 0, curveVertices.size());
+    }
+    public void updateCurve(List<Vector3f> points){
+//        System.out.println(curveVertices);
+        if(vertices.size() < 3) {
+            return;
+        }
+        curveVertices.clear();
+        curveVertices.add(vertices.get(0));
+
+        int size = vertices.size();
+        double interval = 0.02;
+        for (double i = 0; i <= 1; i += interval) {
+//            double j = 1-i;
+//            float tempx = 0, tempy = 0;
+//            for(int p=0; p<=size-1; p+=1){
+//                tempx += combination(size-1,p) * Math.pow(i,p) * Math.pow(j,size-p-1) * vertices.get(p).x;
+//                tempy += combination(size-1,p) * Math.pow(i,p) * Math.pow(j,size-p-1) * vertices.get(p).y;
+//            }
+            curveVertices.add(new Vector3f(calculateBezierPoint((float) i, points)));
+        }
+        curveVertices.add(vertices.get(vertices.size()-1));
+    }
+
+    public int combination(int n, int k){
+        int ans = factorial(n);
+        ans /= factorial(k);
+        ans /= factorial(n-k);
+        return ans;
+    }
+    public int factorial(int x){
+        int ans = 1;
+        for(int i=1; i<=x; i++) ans *= x;
+        return ans;
+    }
+    public static Vector3f calculateBezierPoint(float t, List<Vector3f> points) {
+        int n = points.size() - 1;
+        float x = 0, y = 0;
+
+        for (int i = 0; i <= n; i++) {
+            double coefficient = calculateCoefficient(n, i, t);
+            x += coefficient * points.get(i).x;
+            y += coefficient * points.get(i).y;
+        }
+
+        return new Vector3f(x, y, 0.0f);
+    }
+
+    private static double calculateCoefficient(int n, int i, double t) {
+        return binomialCoefficient(n, i) * Math.pow(t, i) * Math.pow(1 - t, n - i);
+    }
+
+    private static int binomialCoefficient(int n, int k) {
+        if (k == 0 || k == n) {
+            return 1;
+        } else {
+            return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+        }
+    }
+
 }
